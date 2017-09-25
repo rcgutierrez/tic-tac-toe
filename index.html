@@ -12,7 +12,7 @@
     <!-- link to custom stylesheet (always require after Bootstrap) -->
     <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
     <!-- jQuery from CDN -->
-
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 
     <!-- link to custom javascript file (always require after external JS libraries) -->
 
@@ -20,15 +20,17 @@
   </head>
 
   <body>
+    <header class="bottom-content"></header>
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1>Tic Tac Toe</h1></br>
+          <h1><span class="heading">Tic Tac Toe</span></h1></br>
           <button id="start">Click Here to begin!</button>
           <hr>
         </div>
       </div>
-      <div class="row">
+
+      <div class="row" id="section">
 
         <!-- a column represents our game board -->
         <!-- the `offset` class helps us center the board -->
@@ -36,27 +38,31 @@
           <!-- you can put rows inside of columns! -->
           <!-- Bootstrap subdivides these 'nested' rows into 12 columns, too! -->
           <div class="row rowOne">
-            <div class="col-md-4 box"></div>
-            <div class="col-md-4 box"></div>
-            <div class="col-md-4 box"></div>
+            <div class="col-md-4 box top-row firstCol"></div>
+            <div class="col-md-4 box top-row secCol"></div>
+            <div class="col-md-4 box top-row thirdCol"></div>
           </div>
           <div class="row rowTwo">
+            <div class="col-md-4 box firstCol"></div>
             <div class="col-md-4 box"></div>
-            <div class="col-md-4 box"></div>
-            <div class="col-md-4 box "></div>
+            <div class="col-md-4 box thirdCol"></div>
           </div>
           <div class="row rowOne">
-            <div class="col-md-4 box"></div>
-            <div class="col-md-4 box"></div>
-            <div class="col-md-4 box"></div>
+            <div class="col-md-4 box bot-row firstCol"></div>
+            <div class="col-md-4 box bot-row secCol"></div>
+            <div class="col-md-4 box bot-row thirdCol"></div>
           </div>
         </div>
       </div>
-
-      <h2 id="turnIdentifier"></h2> 
-
-
     </div>
+
+    <footer class="col-md-12 bottom-content">
+      <h2 id="turnIdentifier"></h2>
+      <button id="reset">Reset Game</button>
+    </footer>
+
+
+
     <sript src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="js/app.js"></script>
   </body>

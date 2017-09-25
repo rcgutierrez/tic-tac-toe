@@ -5,20 +5,36 @@
 // });
 
 // declare boonlean variable activePlayer; where true is for 'X' and false is for "O"
+var boxClicked = document.querySelectorAll('.row .box');
 var activePlayer = true;
-var winningCombos = [
-                      ['1','2','3'],
-                      ['4','5','6'],
-                      ['7','8','9'],
-                      ['1','5','9'],
-                      ['3','5','7'],
-                      ['1','4','7'],
-                      ['2','5','8'],
-                      ['3','6','9']
-                    ];
-var xChosen = [[], [], [], [], [], [], [], []];
-var oChosen = [[], [], [], [], [], [], [], []];
-var boxNumber = 1;
+var xChosen;
+var oChosen;
+var boxNumber;
+var winningCombos;
+function startCondition(){
+  winningCombos = [
+                        ['1','2','3'],
+                        ['4','5','6'],
+                        ['7','8','9'],
+                        ['1','5','9'],
+                        ['3','5','7'],
+                        ['1','4','7'],
+                        ['2','5','8'],
+                        ['3','6','9']
+                      ];
+  xChosen = [[], [], [], [], [], [], [], []];
+  oChosen = [[], [], [], [], [], [], [], []];
+  boxNumber = 1;
+  boxClicked.forEach(function (thisBox){
+    thisBox.innerText = "";
+    thisBox.setAttribute('boxId', boxNumber);
+    boxNumber++;
+  });
+  boxSetup();
+};
+startCondition();
+(document.querySelector(".bottom-content #reset")).addEventListener('click', startCondition);
+
 //declare startButton function NEEDS A LOOK
 // function startButton(){
 //   //add event listener to .button in header
@@ -99,7 +115,7 @@ function sortAndCheck(arr, number){
       if(playerCombos === winningNum){
         alert("You're a winner, baby");
         console.log(playerCombos + ' ' + winningNum);
-        winningCombos.splice(i);
+        winningCombos = [['x'], ['x'], ['x'], ['x'], ['x'], ['x'], ['x'], ['x']];
         return true
       }
     }
@@ -108,36 +124,35 @@ function sortAndCheck(arr, number){
 };
 
 
-var boxClicked = document.querySelectorAll('.row .box');
-boxClicked.forEach(function (thisBox){
-  thisBox.setAttribute('boxId', boxNumber);
-  boxNumber++;
-});
-
-boxClicked.forEach(function (thisBox){
-
-    thisBox.addEventListener('click', function clicking(){
-      if(activePlayer === true){
-        thisBox.innerText = 'X';
-        activePlayer = false;
-        if(sortAndCheck(xChosen, thisBox.getAttribute('boxId')) == true){
-          removeClickability(clicking);
-        };
-        thisBox.removeEventListener('click', clicking);
-      }else{
-        thisBox.innerText = 'O';
-        activePlayer = true;
-        sortAndCheck(xChosen, thisBox.getAttribute('boxId'))
-        if(sortAndCheck(xChosen, thisBox.getAttribute('boxId')) == true){
-          removeClickability(clicking);
-        };
-        thisBox.removeEventListener('click', clicking);
-      };
-    })
-  });
-
-function removeClickability(removedFunction){
+function boxSetup(){
   boxClicked.forEach(function (thisBox){
-    thisBox.removeEventListener('click', removedFunction);
-  });
-};
+
+      thisBox.addEventListener('click', function clicking(){
+
+        if(activePlayer === true){
+          thisBox.innerText = 'X';
+          activePlayer = false;
+          if(sortAndCheck(xChosen, thisBox.getAttribute('boxId')) == true){
+            removeClickability();
+          };
+          thisBox.removeEventListener('click', clicking);
+        }
+
+        else{
+          thisBox.innerText = 'O';
+          activePlayer = true;
+          if(sortAndCheck(oChosen, thisBox.getAttribute('boxId')) == true){
+            removeClickability();
+          };
+          thisBox.removeEventListener('click', clicking);
+        };
+
+        function removeClickability(){
+          boxClicked.forEach(function (thisBox){
+            thisBox.removeEventListener('click', clicking);
+          });
+        };
+
+      });
+    });
+  };

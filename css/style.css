@@ -1,6 +1,43 @@
+body{
+  background-color: rgba(128, 206, 214,1);
+}
+
+h1{
+  margin: 0;
+}
+
+header{
+  height: 45px;
+  background-color: rgba(254, 251, 216,.8);
+}
+
+.heading{
+  font-family: 'Rubik', sans-serif;
+  font-size: 84px;
+  background-color: rgba(54, 201, 135);
+  text-shadow: -3px -3px 0 rgb(213, 244, 230);
+  color: rgb(9, 147, 153);
+}
+
+.heading:hover{
+  text-shadow: 10px -10px 8px rgb(9, 147, 153);
+  color: rgba(254, 251, 216,.8);
+  transition: .3s;
+}
+
+.col-md-12{
+  background-color: rgba(97, 134, 133, .7);
+  margin: 0 auto;
+  text-align: center;
+}
+
+#section{
+  background-color: rgba(213, 244, 230,.6);
+}
 
 #board {
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .box {
@@ -8,15 +45,32 @@
   height: 150px;
   text-align: center;
   font-size: 92px;
+  color: rgba(9, 147, 153,.55);
+
 }
 
-.col-md-4{
-  text-align: center;
+.box:hover{
+  background-color: rgba(97, 134, 133, .7);
+  transition: .25s;
+  color: rgb(213, 244, 230);
 }
 
 .container{
-  /*background-image: url("../board.png");*/
+  border-bottom-color: rgb(213, 244, 230);
 }
 
-.row{
+.top-row{
+  border-top: none;
+}
+
+.bot-row{
+  border-bottom: none;
+}
+
+.firstCol{
+  border-left: none;
+}
+
+.thirdCol{
+  border-right: none;
 }
