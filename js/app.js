@@ -1,16 +1,20 @@
-// // wait for the DOM to finish loading
-// $(document).ready(function() {
-//   // all code to manipulate the DOM
-//   // goes inside this function
-// });
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
 // declare boonlean variable activePlayer; where true is for 'X' and false is for "O"
 var boxClicked = document.querySelectorAll('.row .box');
-var activePlayer = true;
+var activePlayer;
+var currentPlayer;
+var playerOne;
+var playerTwo;
 var xChosen;
 var oChosen;
 var boxNumber;
 var winningCombos;
+
+
 function startCondition(){
   winningCombos = [
                         ['1','2','3'],
@@ -25,30 +29,32 @@ function startCondition(){
   xChosen = [[], [], [], [], [], [], [], []];
   oChosen = [[], [], [], [], [], [], [], []];
   boxNumber = 1;
+
   boxClicked.forEach(function (thisBox){
     thisBox.innerText = "";
     thisBox.setAttribute('boxId', boxNumber);
     boxNumber++;
   });
+
+  playerOne = prompt("Enter the First Player's Name:").toLowerCase();
+  playerOne = toTitleCase(playerOne);
+  if(prompt('Select Your Symbol: X or O').toLowerCase() == 'x'){
+      activePlayer = true;
+      currentPlayer = true;
+    }else{
+    activePlayer = false;
+    currentPlayer = true;
+  };
+  playerTwo = prompt('Enter the Opponent\'s Name:').toLowerCase();
+  playerTwo = toTitleCase(playerTwo);
+
+  document.querySelector('#turnIdentifier').innerHTML = '<h2>Begin!</h2>';
+  document.querySelector('.button').innerHTML = '<button id="reset">Reset Game</button>';
+  document.querySelector(".bottom-content #reset").addEventListener('click', startCondition);
   boxSetup();
 };
-startCondition();
-(document.querySelector(".bottom-content #reset")).addEventListener('click', startCondition);
 
-//declare startButton function NEEDS A LOOK
-// function startButton(){
-//   //add event listener to .button in header
-//   var sButton = document.querySelector('#start');
-//   // sButton.addEventListener('click', function (){
-//     //asks for which character firstPlayer wants to be, only takes X or O
-//     console.log(sButton);
-//   // })
-//
-//   console.log(sButton);
-//   //if X=> activePlayer = true, if O => activePlayer = false
-// };
-// startButton();
-
+document.querySelector('#start').addEventListener('click', startCondition);
 
 
 function sortAndCheck(arr, number){
@@ -123,6 +129,12 @@ function sortAndCheck(arr, number){
   return false;
 };
 
+// if(currentPlayer == true){
+//   document.querySelector('#turnIdentifier').innerText = "Your turn, " + playerOne;
+//   }else if(currentPlayer == false){
+//     document.querySelector('#turnIdentifier').innerText = "Your turn, " + playerTwo;
+//   };
+
 
 function boxSetup(){
   boxClicked.forEach(function (thisBox){
@@ -132,6 +144,13 @@ function boxSetup(){
         if(activePlayer === true){
           thisBox.innerText = 'X';
           activePlayer = false;
+          if(currentPlayer == true){
+            document.querySelector('#turnIdentifier').innerHTML = "<h2>" +playerTwo+"'s turn</h2>";
+            currentPlayer = false;
+          }else if(currentPlayer == false){
+            document.querySelector('#turnIdentifier').innerHTML = "<h2>" +playerOne+"'s turn</h2>"
+            currentPlayer = true;
+          };
           if(sortAndCheck(xChosen, thisBox.getAttribute('boxId')) == true){
             removeClickability();
           };
@@ -141,6 +160,13 @@ function boxSetup(){
         else{
           thisBox.innerText = 'O';
           activePlayer = true;
+          if(currentPlayer == true){
+            document.querySelector('#turnIdentifier').innerHTML = "<h2>" +playerTwo+"'s turn</h2>";
+            currentPlayer = false;
+          }else if(currentPlayer == false){
+            document.querySelector('#turnIdentifier').innerHTML = "<h2>" +playerOne+"'s turn</h2>"
+            currentPlayer = true;
+          };
           if(sortAndCheck(oChosen, thisBox.getAttribute('boxId')) == true){
             removeClickability();
           };

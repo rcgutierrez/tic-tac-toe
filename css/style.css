@@ -1,9 +1,22 @@
 body{
   background-color: rgba(128, 206, 214,1);
+  min-width: 25%;
+  font-family: 'Rubik', sans-serif;
 }
 
 h1{
   margin: 0;
+}
+
+h2{
+  margin: 0;
+  color: rgb(213, 244, 230);
+  text-shadow: -3px -3px 0 rgb(9, 147, 153);
+}
+
+h2:hover{
+  color: rgb(128, 206, 214);
+  transition: .3s;
 }
 
 header{
@@ -11,8 +24,34 @@ header{
   background-color: rgba(254, 251, 216,.8);
 }
 
+#section{
+  background-color: rgba(213, 244, 230,.6);
+}
+
+#board {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#start{
+  margin: 0;
+  color: rgb(213, 244, 230);
+  text-shadow: -2px -2px 2px rgb(9, 147, 153);
+  background-color: rgba(0,0,0,.2);
+  border-radius: 20%;
+  border-color: rgba(128, 206, 214,1)
+}
+
+#reset{
+  margin: 0;
+  color: rgb(9, 147, 153);
+  text-shadow: -2px -2px 2px rgb(213, 244, 230);
+  background-color: rgba(0,0,0,.2);
+  border-radius: 20%;
+  border-color: rgba(128, 206, 214,1)
+}
+
 .heading{
-  font-family: 'Rubik', sans-serif;
   font-size: 84px;
   background-color: rgba(54, 201, 135);
   text-shadow: -3px -3px 0 rgb(213, 244, 230);
@@ -31,22 +70,12 @@ header{
   text-align: center;
 }
 
-#section{
-  background-color: rgba(213, 244, 230,.6);
-}
-
-#board {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 .box {
-  border: 1px solid black;
+  border: 2px solid black;
   height: 150px;
   text-align: center;
   font-size: 92px;
   color: rgba(9, 147, 153,.55);
-
 }
 
 .box:hover{
@@ -73,4 +102,13 @@ header{
 
 .thirdCol{
   border-right: none;
+}
+
+.bottom-content{
+  background-color: rgba(254, 251, 216,.8);
+  height: 45px;
+}
+
+.button{
+  margin-top: 10px;
 }
